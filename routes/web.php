@@ -8,6 +8,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/note-app/all-notes', [NoteController::class, 'getAllNotes'])->name('all-notes');
-Route::get('/note-app/create-note', [NoteController::class, 'createNote'])->name('create-note');
-Route::post('/note-app/store-note', [NoteController::class, 'storeNote'])->name('store-note');
+Route::get('/notes', [NoteController::class, 'getAllNotes'])->name('notes');
+Route::get('/notes/create-note', [NoteController::class, 'createNote'])->name('createNote');
+Route::post('/notes/store-note', [NoteController::class, 'storeNote'])->name('storeNote');
+Route::get('/notes/{id}', [NoteController::class, 'viewNote'])->name('viewNote');
+Route::get('notes/{id}/edit-note', [NoteController::class, 'editNote'])->name('editNote');
+Route::put('/notes/{id}/update-note', [NoteController::class, 'updateNote'])->name('updateNote');
+Route::delete('/notes/{id}/delete-note', [NoteController::class, 'deleteNote'])->name('deleteNote');

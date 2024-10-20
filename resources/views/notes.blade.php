@@ -7,11 +7,22 @@
 </head>
 <body>
     <h1>Notes</h1>
-    @foreach ($users as $user)
+    <form action="{{ route('createNote')}}" method="GET">
+        <button type="submit">New Note</button>
+    </form>
+    <hr>
+
+    @foreach ($notes as $note)
         <div>
-            Title: {{ $user->title }}<br>
-            Description: {{ $user->description }}<br>
-            {{ $user->content }}
+            <b>{{ $note->title }}</b><br>
+            <i>{{ $note->description }}</i><br>
+            {{ $note->content }}<br>
+            Updated on {{ $note->updated_at }}<br>
+            Created on {{ $note->created_at }}
+            <form action="{{ route('viewNote', ['id' => $note->id])}}" method="GET">
+                <button type="submit">View Note</button>
+            </form>
+            <hr>
         </div>
     @endforeach
 </body>

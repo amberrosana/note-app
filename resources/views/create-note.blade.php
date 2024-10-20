@@ -6,19 +6,20 @@
     <title>CREATE NOTE</title>
 </head>
 <body>
-    <form action="{{ route('store-note') }}" method="POST">
+    <h1>CREATE NOTE</h1>
+    <form action="{{ route('storeNote') }}" method="POST">
         @csrf
         <label for="title">Title: </label>
-        <input type="text" id="title" name="title" maxlength="100" required>
+        <input type="text" id="title" name="title" maxlength="100"><br>
         <label for="description">Description </label>
-        <input type="text" id="description" name="description" maxlength="255" required>
+        <input type="text" id="description" name="description" maxlength="255"><br>
         <label for="content"></label>
-        <input type="text" id="content" name="content" maxlength="content" placeholder="Type your text here" style="width: 300px; height: 300px;" required>
-        <button type="submit">Save Note</button>
+        <input type="text" id="content" name="content" maxlength="content" placeholder="Type your text here" required><br>
+        <button type="submit">Save Note</button><br>
     </form>
 
-    <form action="{{ route('all-notes') }}" method="GET">
-        <button type="submit">Back to Notes List</button>
+    <form action="{{ route('notes') }}" method="GET">
+        <button type="submit">View All Notes</button>
     </form>
 </body>
 </html>
