@@ -8,9 +8,18 @@
 </head>
 <body>
     <h1>Notes</h1>
-    <form action="{{ route('createNote')}}" method="GET">
+    <form action="{{ route('createNote') }}" method="GET">
         <button type="submit">New Note</button>
     </form>
+
+    <form action="{{ route('notes') }}" class="col-9" method="GET">
+        <div class="for-groupff">
+            <input type="search" name="search" id="search" class="form control" placeholder="Search" value="{{ $search }}">
+        </div>
+        <button class="btn btn-primary">Search</button>
+        <a href="{{ url('/notes') }}">Reset</a>
+    </form>
+
     <hr>
 
     @foreach ($notes as $note)
@@ -28,6 +37,13 @@
                 @method('PATCH')
                 @csrf
                 <button type="submit">Add To Favorites</button>
+            </form>
+
+            <form action="{{ route('deleteNote', ['id' => $note->id]) }}" method="POST"
+                onsubmit="return confirm('Are you sure you want to delete this note?')">
+                @method('DELETE')
+                @csrf 
+                <button type="submit">Delete Note</button>
             </form>
 
             <hr>

@@ -17,3 +17,6 @@ Route::get('notes/{id}/edit-note', [NoteController::class, 'editNote'])->name('e
 Route::put('/notes/{id}/update-note', [NoteController::class, 'updateNote'])->name('updateNote');
 Route::delete('/notes/{id}/delete-note', [NoteController::class, 'deleteNote'])->name('deleteNote');
 Route::patch('/notes/{id}/add-to-favorites', [NoteController::class, 'addToFavorites'])->name('addToFavorites');
+Route::patch('/notes/{id}/remove-from-favorites', [NoteController::class, 'removeFromFavorites'])->name('removeFromFavorites');
+
+

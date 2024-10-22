@@ -7,10 +7,21 @@ use App\Models\Note;
 
 class NoteController extends Controller
 {
-    public function getAllNotes()
+    public function getAllNotes(Request $request)
     {
-        $notes = Note::orderBy('updated_at', 'desc')->get();
-        return view('notes', ['notes' => $notes]);
+        $search = $request['search'] ?? "";
+
+        if ($search != "") {
+            $notes = Note::where('title', 'LIKE', "%$search%")
+            ->orWhere('description', 'LIKE', "%$search%")
+            ->orWhere('content', 'LIKE', "%$search%")
+            ->orderBy('updated_at', 'desc')
+            ->get();
+        } else {
+            $notes = Note::orderBy('updated_at', 'desc')->get();
+        }
+        
+        return view('notes', ['notes' => $notes, 'search' => $search]);
     }
 
     public function createNote()
@@ -92,7 +103,7 @@ class NoteController extends Controller
         $note->favorite = true;
         $note->save();
 
-        return redirect()->route('viewFavorites');
+        return redirect()->route(route: 'viewFavorites')->with('success', 'Note Added To Favorites');
     }
 
     public function viewFavorites()
@@ -102,5 +113,14 @@ class NoteController extends Controller
                 ->get();
 
         return view('favorites', ['favorites' => $favorites]);
+    }
+
+    public function removeFromFavorites(Request $request)
+    {
+        $note = Note::find($request->id);
+        $note->favorite = false;
+        $note->save();
+
+        return redirect()->route(route: 'viewFavorites')->with('success', 'Note Removed From Favorites');
     }
 }
