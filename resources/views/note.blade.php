@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Note</title>
+    @vite('resources/css/app.css')
+    <title>View Note</title>
 </head>
 <body>
     <div>
@@ -14,7 +15,7 @@
             Updated on {{ $note->updated_at }}<br>
             Created on {{ $note->created_at }}
         </p>
-    <div>
+    </div>
 
     <form action="{{ route('editNote', ['id' => $note->id]) }}" method="GET">
         <button type="submit">Edit Note</button>

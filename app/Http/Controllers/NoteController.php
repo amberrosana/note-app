@@ -85,4 +85,22 @@ class NoteController extends Controller
 
         return redirect()->route('notes')->with('success', 'Note Deleted Successfully');
     }
+
+    public function addToFavorites(Request $request)
+    {
+        $note = Note::find($request->id);
+        $note->favorite = true;
+        $note->save();
+
+        return redirect()->route('viewFavorites');
+    }
+
+    public function viewFavorites()
+    {
+        $favorites = Note::where('favorite', true)
+                ->orderBy('updated_at', 'desc')
+                ->get();
+
+        return view('favorites', ['favorites' => $favorites]);
+    }
 }

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite('resources/css/app.css')
     <title>Note App</title>
 </head>
 <body>
@@ -22,6 +23,13 @@
             <form action="{{ route('viewNote', ['id' => $note->id])}}" method="GET">
                 <button type="submit">View Note</button>
             </form>
+
+            <form action="{{ route('addToFavorites', ['id' => $note->id]) }}" method="POST">
+                @method('PATCH')
+                @csrf
+                <button type="submit">Add To Favorites</button>
+            </form>
+
             <hr>
         </div>
     @endforeach
