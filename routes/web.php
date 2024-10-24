@@ -4,10 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NoteController;
 use App\Models\Note;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/notes', [NoteController::class, 'getAllNotes'])->name('notes');
 Route::get('/notes/create-note', [NoteController::class, 'createNote'])->name('createNote');
 Route::post('/notes/store-note', [NoteController::class, 'storeNote'])->name('storeNote');
