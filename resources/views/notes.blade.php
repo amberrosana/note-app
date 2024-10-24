@@ -12,11 +12,11 @@
         <button type="submit">New Note</button>
     </form>
 
-    <form action="{{ route('notes') }}" class="col-9" method="GET">
-        <div class="for-groupff">
+    <form action="{{ route('notes') }}" method="GET">
+        <div>
             <input type="search" name="search" id="search" class="form control" placeholder="Search" value="{{ $search }}">
         </div>
-        <button class="btn btn-primary">Search</button>
+        <button>Search</button>
         <a href="{{ url('/notes') }}">Reset</a>
     </form>
 

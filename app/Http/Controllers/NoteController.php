@@ -37,13 +37,8 @@ class NoteController extends Controller
             'content' => 'required|max:10000'
         ]);
 
-        if ($validated['title'] === null)
-        {
-            $validated['title'] = 'Untitled';
-        }
-
         $note = new Note();
-        $note->title = $validated['title'];
+        $note->title = $validated['title'] ?? 'Untitled';
         $note->description = $validated['description'];
         $note->content = $validated['content'];
         $note->save();
@@ -71,13 +66,8 @@ class NoteController extends Controller
             'content' => 'required|max:10000'
         ]);
 
-        if ($validated['title'] === null)
-        {
-            $validated['title'] = 'Untitled';
-        }
-
         $note = Note::find($request->id);
-        $note->title = $validated['title'];
+        $note->title = $validated['title'] ?? 'Untitled';
         $note->description = $validated['description'];
         $note->content = $validated['content'];
         $note->save();

@@ -10,12 +10,9 @@
     <h1>CREATE NOTE</h1>
     <form action="{{ route('storeNote') }}" method="POST">
         @csrf
-        <label for="title">Title: </label>
-        <input type="text" id="title" name="title" maxlength="100"><br>
-        <label for="description">Description </label>
-        <input type="text" id="description" name="description" maxlength="255"><br>
-        <label for="content"></label>
-        <input type="text" id="content" name="content" maxlength="content" placeholder="Type your text here" required><br>
+        <input type="text" id="title" name="title"placeholder="Title" maxlength="100"><br>
+        <input type="text" id="description" name="description" placeholder="Description" maxlength="255"><br>
+        <input type="text" id="content" name="content" maxlength="10000" placeholder="Type your text here" required><br>
         <button type="submit">Save Note</button><br>
     </form>
 
