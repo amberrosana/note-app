@@ -12,6 +12,6 @@ class Note extends Model
         'title',
         'description',
         'content',
-        'favorite'
+        'archived'
     ];
 }

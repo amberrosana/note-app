@@ -12,7 +12,7 @@
         @csrf
         <input type="text" id="title" name="title"placeholder="Title" maxlength="100"><br>
         <input type="text" id="description" name="description" placeholder="Description" maxlength="255"><br>
-        <input type="text" id="content" name="content" maxlength="10000" placeholder="Type your text here" required><br>
+        <textarea type="text" id="content" name="content" maxlength="10000" placeholder="Type your text here" required></textarea><br>
         <button type="submit">Save Note</button><br>
     </form>
 

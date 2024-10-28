@@ -18,7 +18,9 @@ class NoteController extends Controller
             ->orderBy('updated_at', 'desc')
             ->get();
         } else {
-            $notes = Note::orderBy('updated_at', 'desc')->get();
+            $notes = Note::orderBy('updated_at', 'desc')
+            ->where('archived', false)
+            ->get();
         }
         
         return view('notes', ['notes' => $notes, 'search' => $search]);
@@ -87,30 +89,41 @@ class NoteController extends Controller
         return redirect()->route('notes')->with('success', 'Note Deleted Successfully');
     }
 
-    public function addToFavorites(Request $request)
+    public function archive(Request $request)
     {
         $note = Note::find($request->id);
-        $note->favorite = true;
+        $note->archived = true;
         $note->save();
 
-        return redirect()->route(route: 'viewFavorites')->with('success', 'Note Added To Favorites');
+        return redirect('notes');
+
     }
 
-    public function viewFavorites()
+    public function viewArchive()
     {
-        $favorites = Note::where('favorite', true)
-                ->orderBy('updated_at', 'desc')
-                ->get();
+        $search = $request['search'] ?? "";
 
-        return view('favorites', ['favorites' => $favorites]);
+        if ($search != "") {
+            $notes = Note::where('title', 'LIKE', "%$search%")
+            ->orWhere('description', 'LIKE', "%$search%")
+            ->orWhere('content', 'LIKE', "%$search%")
+            ->orderBy('updated_at', 'desc')
+            ->get();
+        } else {
+            $notes = Note::orderBy('updated_at', 'desc')
+            ->where('archived', true)
+            ->get();
+        }
+        
+        return view('archive', ['notes' => $notes, 'search' => $search]);
     }
 
-    public function removeFromFavorites(Request $request)
+    public function removeFromArchive(Request $request)
     {
         $note = Note::find($request->id);
-        $note->favorite = false;
+        $note->archived = false;
         $note->save();
 
-        return redirect()->route(route: 'viewFavorites')->with('success', 'Note Removed From Favorites');
+        return redirect()->route(route: 'viewArchive')->with('success', 'Note Removed From Archive');
     }
 }

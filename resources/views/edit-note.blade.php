@@ -16,7 +16,7 @@
         <label for="description">Description </label>
         <input type="text" id="description" name="description" value="{{ $note->description }}" maxlength="255"><br>
         <label for="content"></label>
-        <input type="text" id="content" name="content" maxlength="content" value="{{ $note->content }}" placeholder="Type your text here" required><br>
+        <textarea type="text" id="content" name="content" maxlength="10000" value="{{ $note->content }}" required></textarea><br>
         <button type="submit">Update Note</button><br>
     </form>
 
