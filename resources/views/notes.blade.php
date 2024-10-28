@@ -22,8 +22,8 @@
                 <input class="bg-white-500 w-full py-2 pl-10 pr-3 shadow-md focus:outline-purple-900" type="search" name="search" id="search" placeholder="" value="{{ $search }}" />
             </div>
             <button class="whitespace-nowrap rounded-md bg-purple-500 px-3 py-2 text-white hover:shadow-md hover:bg-purple-900 active:bg-purple-300">&#x1F50E;&#xFE0E;</button>
-            <a href="{{ url('/notes') }}" class="whitespace-nowrap text-violet-900 hover:text-indigo-700 active:text-violet-500">Reset</a>
-            <a href="{{ url('/notes/archive') }}" class="whitespace-nowrap rounded-md bg-purple-500 px-3 py-2 text-white hover:shadow-md hover:bg-purple-900 active:bg-purple-300">Archive</a>
+            <a href="{{ url('/notes') }}" class="material-icons whitespace-nowrap text-violet-900 hover:text-indigo-700 active:text-violet-500">refresh</a>
+            <a href="{{ url('/notes/archive') }}" class="material-icons whitespace-nowrap rounded-md bg-purple-500 px-3 py-2 text-white hover:shadow-md hover:bg-purple-900 active:bg-purple-300">archive</a>
         </form>
     </div>
 

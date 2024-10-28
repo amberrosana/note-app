@@ -12,15 +12,18 @@ class NoteController extends Controller
         $search = $request['search'] ?? "";
 
         if ($search != "") {
-            $notes = Note::where('title', 'LIKE', "%$search%")
-            ->orWhere('description', 'LIKE', "%$search%")
-            ->orWhere('content', 'LIKE', "%$search%")
-            ->orderBy('updated_at', 'desc')
-            ->get();
+            $notes = Note::where('archived', false)
+                ->where(function ($query) use ($search) {
+                    $query->where('title', 'LIKE', "%$search%")
+                          ->orWhere('description', 'LIKE', "%$search%")
+                          ->orWhere('content', 'LIKE', "%$search%");
+                })
+                ->orderBy('updated_at', 'desc')
+                ->get();
         } else {
-            $notes = Note::orderBy('updated_at', 'desc')
-            ->where('archived', false)
-            ->get();
+            $notes = Note::where('archived', false)
+                ->orderBy('updated_at', 'desc')
+                ->get();
         }
         
         return view('notes', ['notes' => $notes, 'search' => $search]);
@@ -99,20 +102,23 @@ class NoteController extends Controller
 
     }
 
-    public function viewArchive()
+    public function viewArchive(Request $request)
     {
         $search = $request['search'] ?? "";
 
         if ($search != "") {
-            $notes = Note::where('title', 'LIKE', "%$search%")
-            ->orWhere('description', 'LIKE', "%$search%")
-            ->orWhere('content', 'LIKE', "%$search%")
-            ->orderBy('updated_at', 'desc')
-            ->get();
+            $notes = Note::where('archived', true)
+                ->where(function ($query) use ($search) {
+                    $query->where('title', 'LIKE', "%$search%")
+                          ->orWhere('description', 'LIKE', "%$search%")
+                          ->orWhere('content', 'LIKE', "%$search%");
+                })
+                ->orderBy('updated_at', 'desc')
+                ->get();
         } else {
-            $notes = Note::orderBy('updated_at', 'desc')
-            ->where('archived', true)
-            ->get();
+            $notes = Note::where('archived', true)
+                ->orderBy('updated_at', 'desc')
+                ->get();
         }
         
         return view('archive', ['notes' => $notes, 'search' => $search]);

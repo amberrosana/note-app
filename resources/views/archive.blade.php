@@ -17,7 +17,16 @@
                 <span class="material-icons">home</span>
                 <span class="ml-1">View All Notes</span>
         </a>
+    </div>
 
+    <div class="flex w-full items-center justify-center">
+        <form action="{{ route('viewArchive') }}" method="GET" class="flex w-full max-w-screen-lg items-center space-x-2 px-4">
+            <div class="relative flex-grow p-1">
+                <input class="bg-white-500 w-full py-2 pl-10 pr-3 shadow-md focus:outline-purple-900" type="search" name="search" id="search" placeholder="" value="{{ $search }}" />
+            </div>
+            <button class="whitespace-nowrap rounded-md bg-purple-500 px-3 py-2 text-white hover:shadow-md hover:bg-purple-900 active:bg-purple-300">&#x1F50E;&#xFE0E;</button>
+            <a href="{{ url('/notes/archive') }}" class="material-icons whitespace-nowrap text-violet-900 hover:text-indigo-700 active:text-violet-500">refresh</a>
+        </form>
     </div>
 
       <div class="grid grid-cols-1 gap-6 p-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
