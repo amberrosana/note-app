@@ -6,13 +6,13 @@
     @vite('resources/css/app.css')
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <title>Notes</title>
+    <title>Letters of Sumire</title>
 </head>
 
 <body>
     <div class="flex items-center justify-center bg-purple-800 p-2">
         <h1 class="prose text-white text-md sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">
-            <a href="/notes">MyNotes</a>
+            <a href="/notes">Letters of Sumire</a>
         </h1>
     </div>
 
@@ -51,7 +51,8 @@
                 </form>
 
                 <form action="{{ route('deleteNote', ['id' => $note->id]) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this note?')">
-                    @method('DELETE') @csrf
+                    @method('DELETE') 
+                    @csrf
                     <button type="submit" class="text-white"><span class="material-icons">delete</span></button>
                 </form>
 
